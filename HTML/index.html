@@ -1,0 +1,893 @@
+<html lang="zh-CN"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>个人项目展示 | GitHub Portfolio</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/highlight.js@11.7.0/lib/highlight.min.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.7.0/styles/github-dark.min.css">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#165DFF',
+            secondary: '#36D399',
+            dark: '#1E293B',
+            light: '#F8FAFC'
+          },
+          fontFamily: {
+            inter: ['Inter', 'system-ui', 'sans-serif'],
+          },
+        },
+      }
+    }
+  </script>
+  <style type="text/tailwindcss">
+    @layer utilities {
+      .content-auto {
+        content-visibility: auto;
+      }
+      .text-shadow {
+        text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      }
+      .card-hover {
+        @apply transition-all duration-300 hover:shadow-xl hover:-translate-y-1;
+      }
+      .gradient-bg {
+        background: linear-gradient(135deg, #165DFF 0%, #36D399 100%);
+      }
+    }
+  </style>
+</head>
+<body class="font-inter bg-light dark:bg-dark text-gray-800 dark:text-gray-200 min-h-screen flex flex-col">
+  <!-- 导航栏 -->
+  <header class="sticky top-0 z-50 backdrop-blur-md bg-white/80 dark:bg-dark/80 shadow-sm transition-all duration-300">
+    <nav class="container mx-auto px-4 py-3 flex justify-between items-center">
+      <div class="flex items-center space-x-2">
+        <i class="fa-brands fa-github text-2xl text-primary"></i>
+        <span class="text-xl font-bold">GitHub Portfolio</span>
+      </div>
+      <div class="flex items-center space-x-6">
+        <button id="theme-toggle" class="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
+          <i class="fa-regular fa-moon text-lg"></i>
+        </button>
+        <a href="#projects" class="hidden md:inline-block hover:text-primary transition-colors">项目</a>
+        <a href="#about" class="hidden md:inline-block hover:text-primary transition-colors">关于我</a>
+        <a href="#contact" class="hidden md:inline-block hover:text-primary transition-colors">联系</a>
+        <a href="https://github.com/You-idea/23-26LAB/" target="_blank" class="bg-primary hover:bg-primary/90 text-white px-4 py-2 rounded-lg transition-all">
+          <i class="fa-brands fa-github mr-2"></i>我的GitHub
+        </a>
+        <button id="mobile-menu-button" class="md:hidden p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800">
+          <i class="fa-solid fa-bars text-xl"></i>
+        </button>
+      </div>
+    </nav>
+    <!-- 移动端菜单 -->
+    <div id="mobile-menu" class="md:hidden hidden bg-white dark:bg-dark shadow-lg absolute w-full">
+      <div class="container mx-auto px-4 py-2 flex flex-col space-y-3">
+        <a href="#projects" class="py-2 hover:text-primary transition-colors">项目</a>
+        <a href="#about" class="py-2 hover:text-primary transition-colors">关于我</a>
+        <a href="#contact" class="py-2 hover:text-primary transition-colors">联系</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- 英雄区域 -->
+  <section class="gradient-bg text-white py-20 md:py-32">
+    <div class="container mx-auto px-4 text-center">
+      <div class="inline-block p-1 rounded-full bg-white/20 mb-6">
+        <div class="w-24 h-24 rounded-full overflow-hidden border-4 border-white/50">
+          <img src="https://github.com/You-idea/23-26LAB/blob/main/HTML/TX.jpg?raw=true" alt="个人头像" class="w-full h-full object-cover">
+        </div>
+      </div>
+      <h1 class="text-[clamp(2.5rem,5vw,4rem)] font-bold mb-4 text-shadow">你好，我是<span class="text-secondary">李想同学</span></h1>
+      <p class="text-[clamp(1rem,2vw,1.25rem)] max-w-2xl mx-auto mb-8 text-white/90">
+        欢迎来到我的GitHub项目展示页面，这里展示了我的开源项目和代码作品。
+      </p>
+      <div class="flex flex-wrap justify-center gap-4">
+        <a href="#projects" class="bg-white text-primary hover:bg-gray-100 px-6 py-3 rounded-lg font-medium transition-all shadow-lg hover:shadow-xl">
+          浏览项目
+        </a>
+        <a href="https://github.com/You-idea/23-26LAB/" target="_blank" class="bg-transparent border-2 border-white hover:bg-white/10 px-6 py-3 rounded-lg font-medium transition-all">
+          <i class="fa-brands fa-github mr-2"></i>访问GitHub
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 项目列表区域 -->
+  <section id="projects" class="py-16 md:py-24">
+    <div class="container mx-auto px-4">
+      <div class="text-center mb-16">
+        <h2 class="text-[clamp(1.75rem,3vw,2.5rem)] font-bold mb-4">我的<span class="text-primary">项目</span></h2>
+        <p class="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+          以下是我在GitHub上的一些开源项目，点击卡片可以查看项目详情和代码。
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- 项目卡片 1 -->
+        <div class="bg-white dark:bg-gray-900 rounded-xl shadow-md overflow-hidden card-hover" data-repo="project-1">
+          <div class="h-48 overflow-hidden">
+            <img src="https://github.com/You-idea/23-26LAB/blob/main/HTML/mediation.png?raw=true" alt="项目预览" class="w-full h-full object-cover">
+          </div>
+          <div class="p-6">
+            <div class="flex justify-between items-start mb-3">
+              <h3 class="text-xl font-bold">Mediation</h3>
+              <span class="bg-primary/10 text-primary text-xs px-2 py-1 rounded-full">R</span>
+            </div>
+            <p class="text-gray-600 dark:text-gray-400 mb-4 line-clamp-3">
+              这是一个基于matlab、python和R的中介效应分析模型代码库，涵盖了简单中介分析和链式中介分析。
+            </p>
+            <div class="flex justify-between items-center">
+              <div class="flex items-center space-x-4">
+                <span class="flex items-center text-sm text-gray-500 dark:text-gray-400">
+                  <i class="fa-certificate text-primary mr-1"></i> MIT
+                </span>
+              </div>
+              <button class="view-project bg-primary/10 hover:bg-primary/20 text-primary px-3 py-1.5 rounded-lg transition-colors">
+                查看详情
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- 项目卡片 2 -->
+        <div class="bg-white dark:bg-gray-900 rounded-xl shadow-md overflow-hidden card-hover" data-repo="project-2">
+          <div class="h-48 overflow-hidden">
+            <img src="https://github.com/You-idea/23-26LAB/blob/main/HTML/gradient.png?raw=true" alt="项目预览" class="w-full h-full object-cover">
+          </div>
+          <div class="p-6">
+            <div class="flex justify-between items-start mb-3">
+              <h3 class="text-xl font-bold">Gradient </h3>
+              <span class="bg-blue-100 text-blue-600 dark:bg-blue-900 dark:text-blue-300 text-xs px-2 py-1 rounded-full">Matlab</span>
+            </div>
+            <p class="text-gray-600 dark:text-gray-400 mb-4 line-clamp-3">
+              这是一个用于连接组皮层梯度计算的matlab代码，广泛应用于脑科学和医学等多个领域。
+            </p>
+            <div class="flex justify-between items-center">
+              <div class="flex items-center space-x-4">
+                <span class="flex items-center text-sm text-gray-500 dark:text-gray-400">
+                  <i class="fa-certificate text-primary mr-1"></i> GPL-3.0
+                </span>
+              </div>
+              <button class="view-project bg-blue-100 hover:bg-blue-200 text-blue-600 dark:bg-blue-900 dark:text-blue-300 px-3 py-1.5 rounded-lg transition-colors">
+                查看详情
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- 项目卡片 3 -->
+        <div class="bg-white dark:bg-gray-900 rounded-xl shadow-md overflow-hidden card-hover" data-repo="project-3">
+          <div class="h-48 overflow-hidden">
+            <img src="https://github.com/You-idea/23-26LAB/blob/main/HTML/combat.png?raw=true" alt="项目预览" class="w-full h-full object-cover">
+          </div>
+          <div class="p-6">
+            <div class="flex justify-between items-start mb-3">
+              <h3 class="text-xl font-bold">ComBat</h3>
+              <span class="bg-purple-100 text-purple-600 dark:bg-purple-900 dark:text-purple-300 text-xs px-2 py-1 rounded-full">Matlab</span>
+            </div>
+            <p class="text-gray-600 dark:text-gray-400 mb-4 line-clamp-3">
+              这是一个基于matlab开发的用于消除数据间批次效应的数据校正方式，能够通过合并小样本增加样本量。
+            </p>
+            <div class="flex justify-between items-center">
+              <div class="flex items-center space-x-4">
+                <span class="flex items-center text-sm text-gray-500 dark:text-gray-400">
+                  <i class="fa-certificate text-primary mr-1"></i> MIT
+                </span>
+              </div>
+              <button class="view-project bg-purple-100 hover:bg-purple-200 text-purple-600 dark:bg-purple-900 dark:text-purple-300 px-3 py-1.5 rounded-lg transition-colors">
+                查看详情
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- 项目卡片 4 -->
+        <div class="bg-white dark:bg-gray-900 rounded-xl shadow-md overflow-hidden card-hover" data-repo="project-4">
+          <div class="h-48 overflow-hidden">
+            <img src="https://github.com/You-idea/23-26LAB/blob/main/HTML/LOOCV.png?raw=true" alt="项目预览" class="w-full h-full object-cover">
+          </div>
+          <div class="p-6">
+            <div class="flex justify-between items-start mb-3">
+              <h3 class="text-xl font-bold">LOOCV</h3>
+              <span class="bg-green-100 text-green-600 dark:bg-green-900 dark:text-green-300 text-xs px-2 py-1 rounded-full">Python</span>
+            </div>
+            <p class="text-gray-600 dark:text-gray-400 mb-4 line-clamp-3">
+              这是一个基于python的用于三折交叉验证的留一法计算工具，其运算逻辑广泛应用于对模型性能的评估。
+            </p>
+            <div class="flex justify-between items-center">
+              <div class="flex items-center space-x-4">
+                <span class="flex items-center text-sm text-gray-500 dark:text-gray-400">
+                  <i class="fa-certificate text-primary mr-1"></i> MIT
+                </span>
+              </div>
+              <button class="view-project bg-green-100 hover:bg-green-200 text-green-600 dark:bg-green-900 dark:text-green-300 px-3 py-1.5 rounded-lg transition-colors">
+                查看详情
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- 项目卡片 5 -->
+        <div class="bg-white dark:bg-gray-900 rounded-xl shadow-md overflow-hidden card-hover" data-repo="project-5">
+          <div class="h-48 overflow-hidden">
+            <img src="https://github.com/You-idea/23-26LAB/blob/main/HTML/rsa.png?raw=true" alt="项目预览" class="w-full h-full object-cover">
+          </div>
+          <div class="p-6">
+            <div class="flex justify-between items-start mb-3">
+              <h3 class="text-xl font-bold">IS-RSA</h3>
+              <span class="bg-red-100 text-red-600 dark:bg-red-900 dark:text-red-300 text-xs px-2 py-1 rounded-full">Python</span>
+            </div>
+            <p class="text-gray-600 dark:text-gray-400 mb-4 line-clamp-3">
+              这是一个基于python的个体间表征相似性（IS-RSA）的计算代码，其中还包括IS-RSA和Mediation的整合代码。
+            </p>
+            <div class="flex justify-between items-center">
+              <div class="flex items-center space-x-4">
+                <span class="flex items-center text-sm text-gray-500 dark:text-gray-400">
+                  <i class="fa-certificate text-primary mr-1"></i> MIT
+                </span>
+              </div>
+              <button class="view-project bg-red-100 hover:bg-red-200 text-red-600 dark:bg-red-900 dark:text-red-300 px-3 py-1.5 rounded-lg transition-colors">
+                查看详情
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- 项目卡片 6 -->
+        <div class="bg-white dark:bg-gray-900 rounded-xl shadow-md overflow-hidden card-hover" data-repo="project-6">
+          <div class="h-48 overflow-hidden">
+            <img src="https://github.com/You-idea/23-26LAB/blob/main/HTML/behaviour.png?raw=true" alt="项目预览" class="w-full h-full object-cover">
+          </div>
+          <div class="p-6">
+            <div class="flex justify-between items-start mb-3">
+              <h3 class="text-xl font-bold">Behaviour</h3>
+              <span class="bg-yellow-100 text-yellow-600 dark:bg-yellow-900 dark:text-yellow-300 text-xs px-2 py-1 rounded-full">Python</span>
+            </div>
+            <p class="text-gray-600 dark:text-gray-400 mb-4 line-clamp-3">
+              这是一个基于python的用于大规模被试的批量问卷整理的代码，可以提高我们在数据筛选阶段的工作效率。
+            </p>
+            <div class="flex justify-between items-center">
+              <div class="flex items-center space-x-4">
+                <span class="flex items-center text-sm text-gray-500 dark:text-gray-400">
+                  <i class="fa-certificate text-primary mr-1"></i> MIT
+                </span>
+              </div>
+              <button class="view-project bg-yellow-100 hover:bg-yellow-200 text-yellow-600 dark:bg-yellow-900 dark:text-yellow-300 px-3 py-1.5 rounded-lg transition-colors">
+                查看详情
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="text-center mt-12">
+        <a href="https://github.com/You-idea/23-26LAB/" target="_blank" class="inline-flex items-center bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 px-6 py-3 rounded-lg transition-colors">
+          查看更多项目 <i class="fa-arrow-right ml-2"></i>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 文章发表区域 -->
+  <section id="publications" class="py-16 md:py-24 bg-gray-50 dark:bg-gray-900/50">
+    <div class="container mx-auto px-4">
+      <div class="text-center mb-12">
+        <h2 class="text-[clamp(1.75rem,3vw,2.5rem)] font-bold mb-4">文章<span class="text-primary">发表</span></h2>
+        <p class="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+          以下是我的学术论文发表情况，分为一作文章和合作文章。
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <!-- 一作文章 -->
+        <div>
+          <div class="bg-white dark:bg-gray-900 rounded-xl shadow-md overflow-hidden">
+            <div class="p-6 border-b border-gray-200 dark:border-gray-800">
+              <h3 class="text-xl font-bold flex items-center">
+                <i class="fa-user-circle text-primary mr-3"></i> 一作文章
+              </h3>
+            </div>
+            <div class="p-6">
+              <!-- 见刊文章 -->
+	<div class="mb-8">
+                <h4 class="font-bold text-lg mb-3 flex items-center">
+                  <i class="fa-check-circle text-green-500 mr-2"></i> 见刊文章
+                </h4>
+              <div class="mb-8 text-center">
+                  <p class="text-gray-500 dark:text-gray-400">静心等待，静候花开</p>
+                  <p class="text-gray-600 dark:text-gray-400 mt-2">正在努力撰写和投稿中，敬请期待</p>
+              </div>
+            </div>
+
+              <!-- 在投文章 -->
+              <div>
+                <h4 class="font-bold text-lg mb-3 flex items-center">
+                  <i class="fa-paper-plane text-primary mr-2"></i> 在投文章
+                </h4>
+                <div class="space-y-4">
+                  <div class="bg-gray-50 dark:bg-gray-800 p-4 rounded-lg">
+                    <p class="font-medium">The morphological and transcriptomic mechanisms underlying dispositional greed: A multi-site and genetic analysis</p>
+                    <p class="text-sm text-gray-600 dark:text-gray-400">European Journal of Personality，在审</p>
+                    <div class="mt-2 flex items-center text-xs text-gray-500">
+                      <span class="bg-orange-100 text-orange-800 dark:bg-orange-900 dark:text-orange-300 px-2 py-0.5 rounded-full">在投</span>
+                    </div>
+                  </div>
+	<div class="bg-gray-50 dark:bg-gray-800 p-4 rounded-lg">
+                    <p class="font-medium">Neural and Transcriptomic Mechanisms Underlying Problematic Smartphone Use: Insights from Multi-Model Imaging and Genetic Analysis</p>
+                    <p class="text-sm text-gray-600 dark:text-gray-400">Journal of Psychiatric Research，在审</p>
+                    <div class="mt-2 flex items-center text-xs text-gray-500">
+                      <span class="bg-orange-100 text-orange-800 dark:bg-orange-900 dark:text-orange-300 px-2 py-0.5 rounded-full">在投</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 合作文章 -->
+        <div>
+          <div class="bg-white dark:bg-gray-900 rounded-xl shadow-md overflow-hidden">
+            <div class="p-6 border-b border-gray-200 dark:border-gray-800">
+              <h3 class="text-xl font-bold flex items-center">
+                <i class="fa-users text-primary mr-3"></i> 合作文章
+              </h3>
+            </div>
+            <div class="p-6">
+              <!-- 见刊文章 -->
+              <div class="mb-8">
+                <h4 class="font-bold text-lg mb-3 flex items-center">
+                  <i class="fa-check-circle text-green-500 mr-2"></i> 见刊文章
+                </h4>
+                <div class="space-y-4">
+                  <div class="bg-gray-50 dark:bg-gray-800 p-4 rounded-lg">
+                    <p class="font-medium">Dissociable ventral and dorsal sensorimotor functional circuits linking the hypomanic personality traits to aggression via behavioral inhibition system International</p>
+                    <p class="text-sm text-gray-600 dark:text-gray-400">International Journal of Clinical and Health Psychology (2024), SSCI: 三作</p>
+                    <div class="mt-2 flex items-center text-xs text-gray-500">
+                      <a href="https://doi.org/10.1016/j.ijchp.2024.100537" target="_blank" class="bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-300 px-2 py-0.5 rounded-full mr-2 hover:underline">
+                      DOI: 10.1016/j.ijchp.2024.100537
+                    </a>
+                      <span class="bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-300 px-2 py-0.5 rounded-full">见刊</span>
+                    </div>
+                  </div>
+	<div class="bg-gray-50 dark:bg-gray-800 p-4 rounded-lg">
+                    <p class="font-medium">Neural and computational mechanisms of loss aversion in smartphone addiction</p>
+                    <p class="text-sm text-gray-600 dark:text-gray-400">Cerebral Cortex (2024), SCIE: 二作</p>
+                    <div class="mt-2 flex items-center text-xs text-gray-500">
+                      <a href="https://doi.org/10.1093/cercor/bhaf150" target="_blank" class="bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-300 px-2 py-0.5 rounded-full mr-2 hover:underline">
+                      DOI:10.1093/cercor/bhaf150
+                    </a>
+                      <span class="bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-300 px-2 py-0.5 rounded-full">见刊</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- 在投文章 -->
+              <div>
+                <h4 class="font-bold text-lg mb-3 flex items-center">
+                  <i class="fa-paper-plane text-primary mr-2"></i> 在投文章
+                </h4>
+                <div class="space-y-4">
+                  <div class="bg-gray-50 dark:bg-gray-800 p-4 rounded-lg">
+                    <p class="font-medium">Functional Gradient Alterations and Their Transcriptomic Correlates in Short-Video Addiction</p>
+                    <p class="text-sm text-gray-600 dark:text-gray-400">二作，在审</p>
+                    <div class="mt-2 flex items-center text-xs text-gray-500">
+                      <span class="bg-orange-100 text-orange-800 dark:bg-orange-900 dark:text-orange-300 px-2 py-0.5 rounded-full">在投</span>
+                    </div>
+                  </div>
+	 <div class="bg-gray-50 dark:bg-gray-800 p-4 rounded-lg">
+                    <p class="font-medium">The Neural, Neurotransmitter, and Transcriptomic Mechanisms Underlying Dispositional Greed: Exploring Its Link to Negative Psychopathology</p>
+                    <p class="text-sm text-gray-600 dark:text-gray-400">二作，在审</p>
+                    <div class="mt-2 flex items-center text-xs text-gray-500">
+                      <span class="bg-orange-100 text-orange-800 dark:bg-orange-900 dark:text-orange-300 px-2 py-0.5 rounded-full">在投</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 新增：查看更多文章链接 -->
+      <div class="mt-12 text-center">
+           <a href="https://raw.githubusercontent.com/You-idea/23-26LAB/main/HTML/CV.png" target="_blank" class="inline-flex items-center bg-primary hover:bg-primary/90 text-white px-6 py-3 rounded-lg shadow-md transition-all transform hover:scale-105">
+               <i class="fa-file-pdf-o mr-2"></i> 查看更多文章
+            </a>
+       </div>
+    </div>
+  </section>
+
+  <!-- 关于我区域 -->
+  <section id="about" class="py-16 md:py-24 bg-gray-50 dark:bg-gray-900/50">
+    <div class="container mx-auto px-4">
+      <div class="max-w-4xl mx-auto">
+        <div class="text-center mb-12">
+          <h2 class="text-[clamp(1.75rem,3vw,2.5rem)] font-bold mb-4">关于<span class="text-primary">我</span></h2>
+          <p class="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+            了解更多关于我的技术栈和科研经历。
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+          <div class="order-2 md:order-1">
+            <h3 class="text-xl font-bold mb-4">开发者简介</h3>
+            <p class="text-gray-600 dark:text-gray-400 mb-4">
+              我现在是一名心理学研究生，拥有两年的大规模数据分析经验，专注于构建新颖的、高性能、可扩展的数据处理流程。
+            </p>
+            <p class="text-gray-600 dark:text-gray-400 mb-6">
+              我热衷于学习新技术，不断挑战自我，目前主要关注数据分析、深度学习和人工智能等领域的发展。
+            </p>
+
+            <div class="mb-6">
+              <h4 class="font-bold mb-3">技术栈</h4>
+              <div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
+                <div class="bg-white dark:bg-gray-800 p-3 rounded-lg shadow-sm flex items-center">
+                  <i class="fa-solid fa-calculator text-blue-500 mr-2"></i>
+                  <span>Matlab</span>
+                </div>
+                <div class="bg-white dark:bg-gray-800 p-3 rounded-lg shadow-sm flex items-center">
+                  <i class="fa-brands fa-python text-blue-600 mr-2"></i>
+                  <span>Python</span>
+                </div>
+                <div class="bg-white dark:bg-gray-800 p-3 rounded-lg shadow-sm flex items-center">
+                  <i class="fa-solid fa-r-project text-blue-500 mr-2"></i>
+                  <span>R</span>
+                </div>
+                <div class="bg-white dark:bg-gray-800 p-3 rounded-lg shadow-sm flex items-center">
+                  <i class="fa-solid fa-table-columns text-purple-500 mr-2"></i>
+                  <span>SPSS</span>
+                </div>
+                <div class="bg-white dark:bg-gray-800 p-3 rounded-lg shadow-sm flex items-center">
+                  <i class="fa-solid fa-cubes text-orange-500 mr-2"></i>
+                  <span>Mplus</span>
+                </div>
+                <div class="bg-white dark:bg-gray-800 p-3 rounded-lg shadow-sm flex items-center">
+                  <i class="fa-database text-blue-600 mr-2"></i>
+                  <span>Liunx</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="flex flex-wrap gap-4">
+              <a href="https://github.com/You-idea/23-26LAB/" target="_blank" class="bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 px-4 py-2 rounded-lg flex items-center transition-colors">
+                <i class="fa-brands fa-github mr-2"></i> GitHub
+              </a>
+            </div>
+          </div>
+          <div class="order-1 md:order-2 relative">
+            <div class="relative z-10 rounded-xl overflow-hidden shadow-2xl">
+              <img src="https://github.com/You-idea/23-26LAB/blob/main/HTML/I.jpg?raw=true" alt="个人照片" class="w-full h-auto">
+            </div>
+            <div class="absolute -bottom-4 -right-4 w-64 h-64 bg-primary/20 rounded-full -z-10"></div>
+            <div class="absolute -top-4 -left-4 w-32 h-32 bg-secondary/20 rounded-full -z-10"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 联系区域 -->
+  <section id="contact" class="py-16 md:py-24 bg-gray-50 dark:bg-gray-900/50">
+    <div class="container mx-auto px-4">
+      <div class="max-w-4xl mx-auto">
+        <div class="text-center mb-12">
+          <h2 class="text-[clamp(1.75rem,3vw,2.5rem)] font-bold mb-4">与我<span class="text-primary">联系</span></h2>
+          <p class="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+            欢迎通过以下方式与我取得联系
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <!-- 联系方式卡片 -->
+          <div class="bg-white dark:bg-gray-900 p-6 rounded-xl shadow-md">
+            <h3 class="text-xl font-bold mb-6 flex items-center">
+              <i class="fa-address-book text-primary mr-3"></i> 联系方式
+            </h3>
+            <div class="space-y-6">
+              <div class="flex items-start">
+                <div class="bg-primary/10 p-3 rounded-full mr-4">
+                  <i class="fa-envelope text-primary text-xl"></i>
+                </div>
+                <div>
+                  <h4 class="font-medium text-lg">邮箱</h4>
+                  <p class="text-gray-600 dark:text-gray-400">tjdxlx_2023@qq.com</p>
+                </div>
+              </div>
+              <div class="flex items-start">
+                <div class="bg-primary/10 p-3 rounded-full mr-4">
+                  <i class="fa-map-marker text-primary text-xl"></i>
+                </div>
+                <div>
+                  <h4 class="font-medium text-lg">位置</h4>
+                  <p class="text-gray-600 dark:text-gray-400">天津市西青区</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 社交媒体卡片 -->
+          <div class="bg-white dark:bg-gray-900 p-6 rounded-xl shadow-md">
+            <h3 class="text-xl font-bold mb-6 flex items-center">
+              <i class="fa-share-alt text-primary mr-3"></i> 社交媒体
+            </h3>
+            <div class="space-y-4">
+              <a href="https://github.com/You-idea/23-26LAB/" target="_blank" class="flex items-center p-4 border border-gray-200 dark:border-gray-700 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 transition-all duration-300 transform hover:-translate-y-1">
+                <div class="bg-gray-100 dark:bg-gray-800 p-3 rounded-full mr-4">
+                  <i class="fa-brands fa-github text-xl text-gray-800 dark:text-white"></i>
+                </div>
+                <div>
+                  <h4 class="font-medium text-lg">GitHub</h4>
+                  <p class="text-gray-600 dark:text-gray-400">访问我的代码仓库</p>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 页脚 -->
+  <footer class="bg-gray-900 text-white py-12">
+    <div class="container mx-auto px-4">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+        <div class="md:col-span-2">
+          <div class="flex items-center space-x-2 mb-4">
+            <i class="fa-brands fa-github text-2xl text-primary"></i>
+            <span class="text-xl font-bold">GitHub Portfolio</span>
+          </div>
+          <p class="text-gray-400 mb-4 max-w-md">
+            这是一个展示我在GitHub上项目的个人网站，包含了我的开源项目、技术栈和联系方式。
+          </p>
+          <div class="flex space-x-4">
+            <a href="https://github.com/You-idea/23-26LAB/" target="_blank" class="text-gray-400 hover:text-white transition-colors">
+              <i class="fa-brands fa-github text-xl"></i>
+            </a>
+          </div>
+        </div>
+        <div>
+          <h4 class="text-lg font-bold mb-4">快速链接</h4>
+          <ul class="space-y-2">
+            <li><a href="#projects" class="text-gray-400 hover:text-white transition-colors">项目</a></li>
+            <li><a href="#publications" class="text-gray-400 hover:text-white transition-colors">文章</a></li>
+            <li><a href="#about" class="text-gray-400 hover:text-white transition-colors">关于我</a></li>
+            <li><a href="#contact" class="text-gray-400 hover:text-white transition-colors">联系</a></li>
+            <li><a href="https://github.com/You-idea/23-26LAB/" target="_blank" class="text-gray-400 hover:text-white transition-colors">GitHub主页</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="text-lg font-bold mb-4">联系方式</h4>
+          <ul class="space-y-2">
+            <li class="flex items-center">
+              <i class="fa-envelope text-primary mr-2"></i>
+              <a href="mailto:tjdxlx_2023@qq.com" class="text-gray-400 hover:text-white transition-colors">tjdxlx_2023@qq.com</a>
+            </li>
+            <li class="flex items-center">
+              <i class="fa-map-marker text-primary mr-2"></i>
+              <span class="text-gray-400">天津市西青区</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="border-t border-gray-800 pt-8 text-center text-gray-500">
+        <p>© 2025 GitHub Portfolio. 保留所有权利。</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- 项目详情模态框 -->
+  <div id="project-modal" class="fixed inset-0 z-50 flex items-center justify-center hidden">
+    <div class="absolute inset-0 bg-black/70 backdrop-blur-sm" id="modal-overlay"></div>
+    <div class="relative bg-white dark:bg-gray-900 rounded-xl shadow-2xl w-full max-w-4xl max-h-[90vh] overflow-auto m-4">
+      <div class="sticky top-0 bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800 z-10">
+        <div class="flex justify-between items-center p-6">
+          <h3 id="modal-title" class="text-xl font-bold">项目详情</h3>
+          <button id="close-modal" class="text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200">
+            <i class="fa-times text-xl"></i>
+          </button>
+        </div>
+      </div>
+      <div class="p-6" id="modal-content">
+        <!-- 项目内容将通过JavaScript动态加载 -->
+        <div class="flex justify-center items-center h-40">
+          <div class="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-primary"></div>
+        </div>
+      </div>
+      <div class="sticky bottom-0 bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-800 p-6 flex justify-between">
+        <a href="https://github.com/You-idea/23-26LAB/" target="_blank" class="bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 px-4 py-2 rounded-lg flex items-center transition-colors">
+          <i class="fa-brands fa-github mr-2"></i> 查看GitHub仓库
+        </a>
+        <button id="close-modal-btn" class="bg-primary hover:bg-primary/90 text-white px-4 py-2 rounded-lg transition-colors">
+          关闭
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // 模拟GitHub API响应数据
+    const mockProjects = {
+      'project-1': {
+        name: 'Mediation',
+        description: '这是一个基于matlab、python和R的中介效应分析模型代码库，涵盖了简单中介分析和链式中介分析。',
+        readme: `# Mediation
+
+Mediation项目是由李想同学独立开发并优化的，专门用于中介效应分析的代码库。它主要分为模型构建和结果输出两大部分，非常适合批量进行中介分析的场景。其中，Matlab和Python适用于简单中介分析（模型4），而R则适用于链式中介分析（模型6）。该代码库的分析结果已经经过验证，与SPSS的输出结果完全一致。目前，部分代码在输出格式方面还存在不够美观等问题，后续将会持续进行更新和完善。同时，也会更新用于绘制中介模型图的代码，敬请期待。
+
+## 许可证
+
+本项目采用MIT许可证。详情见[LICENSE](LICENSE)文件。
+`,
+        language: 'R',
+        license: 'MIT',
+        updated_at: '2025-06-15T14:30:00Z',
+        homepage: 'https://github.com/You-idea/23-26LAB/blob/main/mediation',
+        html_url: 'https://github.com/You-idea/23-26LAB/tree/main/mediation'
+      },
+      'project-2': {
+        name: 'Gradient',
+        description: '这是一个用于连接组皮层梯度计算的matlab代码，广泛应用于脑科学和医学等多个领域。',
+        readme: `# Gradient
+
+该代码源于夏明睿老师发表在《Molecular Psychiatry》杂志上的研究项目“Connectome gradient dysfunction in major depression and its association with gene expression profiles and treatment outcomes”。基于自身研究需求，借鉴了其中的梯度计算部分，并对其进行了适当修改。目前，代码主要包括两个主要步骤：一是根据脑图谱计算梯度，二是将梯度的.mat文件转换为梯度脑图。代码提供普通脚本和函数两种形式。其中，函数代码主要用于.sh脚本调用，以实现多线程并行计算，从而提高计算效率。截至目前，该代码已成功处理1000+被试的数据分析，并助力生成了一篇在投的文章。
+
+## 许可证
+
+本项目采用GPL-3.0许可证。详情见[LICENSE](LICENSE)文件。
+`,
+        language: 'Matlab',
+        license: 'GPL-3.0',
+        updated_at: '2025-06-10T09:45:00Z',
+        homepage: 'https://github.com/You-idea/23-26LAB/blob/main/gradient',
+        html_url: 'https://github.com/You-idea/23-26LAB/tree/main/gradient'
+      },
+      'project-3': {
+        name: 'ComBat',
+        description: '这是一个基于matlab开发的用于消除数据间批次效应的数据校正方式，能够通过合并小样本增加样本量。',
+        readme: `# ComBat
+
+ComBat是GitHub用户“Jfortin1”开源代码，提供Matlab和Python等多个版本。基于自身研究需求，借鉴了该代码，并编写了使用其函数的Matlab脚本，专门用于消除不同中心核磁数据之间的批次效应。目前，该代码已助力课题组生成多篇在投的文章。
+
+## 许可证
+
+本项目采用MIT许可证。详情见[LICENSE](LICENSE)文件。
+`,
+        language: 'Matlab',
+        license: 'MIT',
+        updated_at: '2025-06-20T16:15:00Z',
+        homepage: 'https://github.com/You-idea/23-26LAB/blob/main/combat',
+        html_url: 'https://github.com/You-idea/23-26LAB/tree/main/combat'
+      },
+      'project-4': {
+        name: 'LOOCV',
+        description: '这是一个基于Python的用于三折交叉验证的留一法计算工具，其运算逻辑广泛应用于对模型性能的评估。',
+        readme: `# LOOCV
+
+LOOCV是由李想同学独立编写并优化的，用于评估机器学习模型性能的代码。该代码经历了多版更新优化。目前版本删除了不必要的数据保存和运算，增加了多线程运算和组块运算，大大提高了运算效率。不过，该代码在轻躁狂人格的研究中尚未得到显著结果，因此暂无相关文章产出。
+
+## 许可证
+
+本项目采用MIT许可证。详情见[LICENSE](LICENSE)文件。
+`,
+        language: 'Python',
+        license: 'MIT',
+        updated_at: '2025-06-10T09:45:00Z',
+        homepage: 'https://github.com/You-idea/23-26LAB/blob/main/LOOCV',
+        html_url: 'https://github.com/You-idea/23-26LAB/tree/main/LOOCV'
+      },
+      'project-5': {
+        name: 'IS-RSA',
+        description: '这是一个基于python的个体间表征相似性（IS-RSA）的计算代码，其中还包括IS-RSA和Mediation的整合代码。',
+        readme: `# IS-RSA
+
+IS-RSA项目是李想同学在参考前人研究思路的基础上，根据研究需要编写的Python代码，主要用于大规模的IS-RSA计算。代码主要分为行为数据的计算和脑数据的计算两大部分，还包括IS-RSA和Mediation的整合代码，以及根据数据绘制热力图的代码。这是我在保证数据计算完整、结果可查的前提下，经过工作流程试验后得出的最节约时间的工作流程。
+
+## 许可证
+
+本项目采用MIT许可证。详情见[LICENSE](LICENSE)文件。
+`,
+        language: 'Python',
+        license: 'MIT',
+        updated_at: '2025-06-10T09:45:00Z',
+        homepage: 'https://github.com/You-idea/23-26LAB/blob/main/IS-RSA',
+        html_url: 'https://github.com/You-idea/23-26LAB/tree/main/IS-RSA'
+      },
+      'project-6': {
+        name: 'Behaviour',
+        description: '这是一个基于python的用于大规模被试的批量问卷整理的代码，可以提高我们在数据筛选阶段的工作效率。',
+        readme: `# Behaviour
+
+Behave项目是李想同学独立开发并优化的，专门用于大规模被试的批量问卷整理，特别适用于消极生理病理学的分析。此外，还有类似的用于数据筛选的代码，详见其他项目。
+
+## 许可证
+
+本项目采用MIT许可证。详情见[LICENSE](LICENSE)文件。
+`,
+        language: 'Python',
+        license: 'MIT',
+        updated_at: '2025-06-10T09:45:00Z',
+        homepage: 'https://github.com/You-idea/23-26LAB/blob/main/behave',
+        html_url: 'https://github.com/You-idea/23-26LAB/tree/main/behave'
+      },
+    };
+
+    // 主题切换功能
+    const themeToggle = document.getElementById('theme-toggle');
+    const htmlElement = document.documentElement;
+    
+    // 检查用户偏好的主题
+    if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+      htmlElement.classList.add('dark');
+      themeToggle.innerHTML = '<i class="fa-regular fa-sun text-lg"></i>';
+    } else {
+      htmlElement.classList.remove('dark');
+      themeToggle.innerHTML = '<i class="fa-regular fa-moon text-lg"></i>';
+    }
+    
+    // 主题切换事件
+    themeToggle.addEventListener('click', () => {
+      if (htmlElement.classList.contains('dark')) {
+        htmlElement.classList.remove('dark');
+        localStorage.theme = 'light';
+        themeToggle.innerHTML = '<i class="fa-regular fa-moon text-lg"></i>';
+      } else {
+        htmlElement.classList.add('dark');
+        localStorage.theme = 'dark';
+        themeToggle.innerHTML = '<i class="fa-regular fa-sun text-lg"></i>';
+      }
+    });
+
+    // 移动端菜单
+    const mobileMenuButton = document.getElementById('mobile-menu-button');
+    const mobileMenu = document.getElementById('mobile-menu');
+    
+    mobileMenuButton.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
+
+    // 平滑滚动
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        
+        // 关闭移动菜单（如果打开）
+        mobileMenu.classList.add('hidden');
+        
+        const targetId = this.getAttribute('href');
+        if (targetId === '#') return;
+        
+        const targetElement = document.querySelector(targetId);
+        if (targetElement) {
+          targetElement.scrollIntoView({
+            behavior: 'smooth'
+          });
+        }
+      });
+    });
+
+    // 项目详情模态框
+    const projectModal = document.getElementById('project-modal');
+    const modalOverlay = document.getElementById('modal-overlay');
+    const closeModal = document.getElementById('close-modal');
+    const closeModalBtn = document.getElementById('close-modal-btn');
+    const modalTitle = document.getElementById('modal-title');
+    const modalContent = document.getElementById('modal-content');
+    const viewProjectButtons = document.querySelectorAll('.view-project');
+    
+    // 打开模态框
+    viewProjectButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        const repo = button.closest('[data-repo]').getAttribute('data-repo');
+        const project = mockProjects[repo];
+        
+        if (project) {
+          modalTitle.textContent = project.name;
+          
+          // 显示加载状态
+          modalContent.innerHTML = `
+            <div class="flex justify-center items-center h-40">
+              <div class="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-primary"></div>
+            </div>
+          `;
+          
+          // 显示模态框
+          projectModal.classList.remove('hidden');
+          document.body.style.overflow = 'hidden';
+          
+          // 模拟API请求延迟
+          setTimeout(() => {
+            // 渲染项目详情
+            const readmeHtml = marked.parse(project.readme);
+            const lastUpdated = new Date(project.updated_at).toLocaleDateString('zh-CN');
+            
+            modalContent.innerHTML = `
+              <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+                <div class="md:col-span-2">
+                  <h4 class="text-lg font-bold mb-2">项目描述</h4>
+                  <p class="text-gray-600 dark:text-gray-400">${project.description}</p>
+                </div>
+                <div class="space-y-3">
+                  <div class="flex items-center">
+                    <i class="fa-star text-yellow-400 mr-2"></i>
+                    <span>Stars: ${project.stars}</span>
+                  </div>
+                  <div class="flex items-center">
+                    <i class="fa-code-fork mr-2"></i>
+                    <span>Forks: ${project.forks}</span>
+                  </div>
+                  <div class="flex items-center">
+                    <i class="fa-file-code-o mr-2"></i>
+                    <span>语言: ${project.language}</span>
+                  </div>
+                  <div class="flex items-center">
+                    <i class="fa-calendar mr-2"></i>
+                    <span>最后更新: ${lastUpdated}</span>
+                  </div>
+                  <div class="flex items-center">
+                    <i class="fa-certificate mr-2"></i>
+                    <span>许可证: ${project.license}</span>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="border-t border-gray-200 dark:border-gray-800 pt-6">
+                <h4 class="text-lg font-bold mb-4">项目文档</h4>
+                <div class="prose dark:prose-invert max-w-none" id="readme-content">
+                  ${readmeHtml}
+                </div>
+              </div>
+            `;
+            
+            // 高亮代码块
+            document.querySelectorAll('#readme-content pre code').forEach((block) => {
+              hljs.highlightElement(block);
+            });
+          }, 800);
+        }
+      });
+    });
+    
+    // 关闭模态框
+    function closeProjectModal() {
+      projectModal.classList.add('hidden');
+      document.body.style.overflow = '';
+    }
+    
+    closeModal.addEventListener('click', closeProjectModal);
+    closeModalBtn.addEventListener('click', closeProjectModal);
+    modalOverlay.addEventListener('click', closeProjectModal);
+    
+    // 按ESC键关闭模态框
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && !projectModal.classList.contains('hidden')) {
+        closeProjectModal();
+      }
+    });
+
+    // 导航栏滚动效果
+    const header = document.querySelector('header');
+    let lastScrollY = window.scrollY;
+    
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 100) {
+        header.classList.add('shadow-md');
+        header.classList.add('py-2');
+        header.classList.remove('py-3');
+      } else {
+        header.classList.remove('shadow-md');
+        header.classList.add('py-3');
+        header.classList.remove('py-2');
+      }
+      
+      lastScrollY = window.scrollY;
+    });
+  </script>
+
+</body></html>
